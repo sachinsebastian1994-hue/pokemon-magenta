@@ -91,6 +91,7 @@ function showText(text, host){
     if(!box){
       box = document.createElement('div');
       box.id='dialog-box'; box.className='win';
+      box.style.cursor='pointer';
       root.appendChild(box);
     }
     box.classList.remove('hidden');
@@ -100,6 +101,10 @@ function showText(text, host){
     arrow.className='arrow'; arrow.textContent='▼';
     box.innerHTML=''; box.appendChild(span); box.appendChild(arrow);
     arrow.style.visibility='hidden';
+
+    const advance = ()=>{ SFX.unlock(); Input.dispatch('a'); };
+    box.addEventListener('pointerdown', advance);
+
     let timer = setInterval(()=>{
       ci+=2;
       if(ci % 10 === 0) SFX.blip();
@@ -119,6 +124,7 @@ function showText(text, host){
           span.textContent=txt.slice(0,ci);
         },16);
       } else {
+        box.removeEventListener('pointerdown', advance);
         Input.pop(ctx);
         box.classList.add('hidden');
         resolve();
@@ -126,11 +132,23 @@ function showText(text, host){
     }});
   });
 }
-function paginate(text){
-  /* split on explicit newlines, pack 2 lines per page */
-  const lines = String(text).split('\n');
+function paginate(text, charsPerLine=32, linesPerPage=2){
+  const rawLines = String(text).split('\n');
+  const wrapped = [];
+  for(const raw of rawLines){
+    if(raw.length <= charsPerLine){ wrapped.push(raw); continue; }
+    const words = raw.split(' ');
+    let line = '';
+    for(const word of words){
+      const test = line ? line+' '+word : word;
+      if(test.length <= charsPerLine){ line = test; }
+      else { if(line) wrapped.push(line); line = word; }
+    }
+    if(line) wrapped.push(line);
+  }
   const pages=[];
-  for(let i=0;i<lines.length;i+=2) pages.push(lines.slice(i,i+2).join('\n'));
+  for(let i=0;i<wrapped.length;i+=linesPerPage)
+    pages.push(wrapped.slice(i,i+linesPerPage).join('\n'));
   return pages.length?pages:[''];
 }
 
