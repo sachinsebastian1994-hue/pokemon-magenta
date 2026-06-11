@@ -1,5 +1,5 @@
 ---
-const ogImage = `${Astro.url.origin}/og.png`;
+const ogImage = new URL('/og.png', Astro.site).href;
 const title = "POKéMON MAGENTA";
 const description = "A fan-made Pokémon game with Gen-1 Pokémon, full battle system, and overworld exploration — playable in the browser.";
 ---
