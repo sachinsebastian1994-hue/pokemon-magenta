@@ -220,13 +220,13 @@ canvas#game{position:absolute; inset:0; width:480px; height:320px;
 .pad-btn{background:#3a3142; border:none; color:#cfc3dd; font-size:16px;
   display:flex; align-items:center; justify-content:center;}
 .pad-btn:active{background:#241e2e; transform:translateY(2px)}
-#action-btns{display:flex; flex-direction:column; align-items:center; gap:14px;}
-#ab{display:flex; gap:16px; align-items:flex-start;}
-.ab-btn{width:64px; height:64px; border-radius:50%; border:none;
+#action-btns{display:flex; flex-direction:column; align-items:center; gap:28px;}
+#ab{display:flex; gap:32px; align-items:flex-start;}
+.ab-btn{width:72px; height:72px; border-radius:50%; border:none;
   background:radial-gradient(circle at 35% 30%, #ff7eb8, #d92a86 65%, #97175e);
   color:#fff; font-family:inherit; font-size:18px;
   box-shadow:0 6px 0 #5e0e3c; text-shadow:0 2px 0 #0006;}
-#btn-a{margin-top:-18px}
+#btn-a{margin-top:-8px}
 .ab-btn:active{transform:translateY(4px); box-shadow:0 2px 0 #5e0e3c}
 .sys-btn{border:none; background:#3a3142; color:#cfc3dd; font-family:inherit;
   font-size:9px; padding:8px 18px; border-radius:14px; box-shadow:0 4px 0 #00000060;
