@@ -1,4 +1,7 @@
 ---
+const ogImage = `${Astro.url.origin}/og.png`;
+const title = "POKéMON MAGENTA";
+const description = "A fan-made Pokémon game with Gen-1 Pokémon, full battle system, and overworld exploration — playable in the browser.";
 ---
 
 <html lang="en">
@@ -6,7 +9,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#b8126e">
-<title>POKéMON MAGENTA</title>
+<title>{title}</title>
+<meta name="description" content={description}>
+
+<!-- Open Graph (Facebook, WhatsApp, iMessage, Slack, Discord) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content={Astro.url.href}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImage}>
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23e8285a'/><rect x='6' y='47' width='88' height='6' fill='%23222'/><circle cx='50' cy='50' r='14' fill='%23fff' stroke='%23222' stroke-width='6'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
